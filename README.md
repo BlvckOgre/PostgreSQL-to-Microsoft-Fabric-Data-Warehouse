@@ -74,7 +74,7 @@ services:
       - pgdata:/var/lib/postgresql/data
 
 volumes:
-  pgdata:
+  pgdata: {}
 ```
 
 Start the container:
@@ -96,15 +96,15 @@ docker exec -it postgres_demo psql -U myuser -d mydatabase
 Create table and add test data:
 
 ```sql
-CREATE TABLE blog_posts (
-  id SERIAL PRIMARY KEY,
-  title TEXT NOT NULL,
-  content TEXT
-);
+CREATE TABLE blog_posts (id serial not null, data jsonb);
 
-INSERT INTO blog_posts (title, content) VALUES
-('Intro to Airbyte', 'Airbyte is an open-source data integration tool.'),
-('PostgreSQL Tips', 'How to run Postgres in Docker.');
+INSERT INTO blog_posts VALUES (1,'{"title": "sunt aut facere repellat provident occaecti excepturi optio reprehend erit", "body": "quia at suscipit\nsuscipit"}'),
+(2,'{"title": "madara aut facere repellat provident occaecti excepturi optio reprehend erit", "body": "wake up to reality uia at suscipit\nsuscipit"}'),
+(3,'{"title": "bonolo molele aut facere repellat provident occaecti excepturi optio reprehend erit", "body": " we dont all have to exist uia at suscipit\nsuscipit"}'),
+(4,'{"title": "givz beku aut facere repellat provident occaecti excepturi optio reprehend erit", "body": "get money uia at suscipit\nsuscipit"}'),
+(5,'{"title": "uzuku aut facere repellat provident occaecti excepturi optio reprehend erit", "body": "the greatest hero quia at suscipit\nsuscipit"}'),
+(6,'{"title": "eren aut facere repellat provident occaecti excepturi optio reprehend erit", "body": "keep moving forward quia at suscipit\nsuscipit"}'),
+(7,'{"title": "monkey d luffy aut facere repellat provident occaecti excepturi optio reprehend erit", "body": "the one piece is real at suscipit\nsuscipit"}');
 ```
 
 Exit:
